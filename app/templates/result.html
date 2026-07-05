@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container pb-5">
+    <div class="result-layout">
+        <div class="result-card {% if prediction == 1 %}risk{% else %}safe{% endif %}">
+            <p class="eyebrow">Prediction result</p>
+            <h1>
+                {% if prediction == 1 %}
+                    Likely to Churn
+                {% else %}
+                    Likely to Stay
+                {% endif %}
+            </h1>
+            {% if probability is not none %}
+                <p class="probability">
+                    {{ "%.2f"|format(probability * 100) }}% churn probability
+                </p>
+            {% endif %}
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a class="btn btn-primary" href="{{ url_for('main.predict') }}">
+                    Score Another
+                </a>
+                <a class="btn btn-outline-dark" href="{{ url_for('main.dashboard') }}">
+                    View Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div class="summary-panel">
+            <h2>Customer Snapshot</h2>
+            <div class="summary-grid">
+                {% for key, value in customer.items() %}
+                    <div>
+                        <span>{{ key }}</span>
+                        <strong>{{ value }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

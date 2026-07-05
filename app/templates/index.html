@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="app-hero">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <p class="eyebrow">Telecom retention intelligence</p>
+                <h1>Customer Churn Prediction</h1>
+                <p class="lead">
+                    Score individual customers, upload CSV batches, retrain the model,
+                    and monitor the latest application metrics from one Flask app.
+                </p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <a class="btn btn-primary" href="{{ url_for('main.predict') }}">
+                        New Prediction
+                    </a>
+                    <a class="btn btn-outline-dark" href="{{ url_for('main.batch_prediction') }}">
+                        Batch CSV
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="metric-grid">
+                    <div class="metric-card">
+                        <span>Model</span>
+                        <strong>{{ metrics.model_name }}</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Accuracy</span>
+                        <strong>
+                            {% if metrics.accuracy is not none %}
+                                {{ "%.2f"|format(metrics.accuracy * 100) }}%
+                            {% else %}
+                                Pending
+                            {% endif %}
+                        </strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Features</span>
+                        <strong>{{ metrics.feature_count or "Pending" }}</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span>Training Rows</span>
+                        <strong>{{ metrics.training_rows or "Pending" }}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="workflow">
+        <div>
+            <span>01</span>
+            <h2>Prepare</h2>
+            <p>Raw customer attributes are cleaned, engineered, encoded, and aligned to the model feature set.</p>
+        </div>
+        <div>
+            <span>02</span>
+            <h2>Predict</h2>
+            <p>The trained classifier returns the churn class and probability for customer retention action.</p>
+        </div>
+        <div>
+            <span>03</span>
+            <h2>Operate</h2>
+            <p>The dashboard gives a quick health check and lets you retrain the model from processed data.</p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

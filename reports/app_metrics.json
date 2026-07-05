@@ -1,0 +1,7 @@
+{
+  "model_name": "GradientBoostingClassifier",
+  "accuracy": 0.7963,
+  "training_rows": 5634,
+  "test_rows": 1409,
+  "feature_count": 35
+}

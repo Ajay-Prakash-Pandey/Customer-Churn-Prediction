@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Churn Prediction</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+    <link
+        href="{{ url_for('static', filename='css/style.css') }}"
+        rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg border-bottom bg-white">
+    <div class="container">
+        <a class="navbar-brand fw-semibold" href="{{ url_for('main.home') }}">
+            Churn ML
+        </a>
+        <div class="navbar-nav flex-row gap-3">
+            <a class="nav-link" href="{{ url_for('main.predict') }}">Predict</a>
+            <a class="nav-link" href="{{ url_for('main.batch_prediction') }}">Batch</a>
+            <a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
+            <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container pt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} mb-3" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+{% block content %}
+
+{% endblock %}
+</main>
+
+</body>
+
+</html>

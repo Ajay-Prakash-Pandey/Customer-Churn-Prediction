@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container pb-5">
+    <div class="dashboard-header">
+        <div>
+            <p class="eyebrow">Operations</p>
+            <h1>Model Dashboard</h1>
+        </div>
+        <form method="post" action="{{ url_for('main.train') }}">
+            <button class="btn btn-primary" type="submit">Train Model</button>
+        </form>
+    </div>
+
+    <div class="metric-grid dashboard-grid">
+        <div class="metric-card">
+            <span>Model</span>
+            <strong>{{ metrics.model_name }}</strong>
+        </div>
+        <div class="metric-card">
+            <span>Accuracy</span>
+            <strong>
+                {% if metrics.accuracy is not none %}
+                    {{ "%.2f"|format(metrics.accuracy * 100) }}%
+                {% else %}
+                    Pending
+                {% endif %}
+            </strong>
+        </div>
+        <div class="metric-card">
+            <span>Features</span>
+            <strong>{{ metrics.feature_count or "Pending" }}</strong>
+        </div>
+        <div class="metric-card">
+            <span>Training Rows</span>
+            <strong>{{ metrics.training_rows or "Pending" }}</strong>
+        </div>
+        <div class="metric-card">
+            <span>Test Rows</span>
+            <strong>{{ metrics.test_rows or "Pending" }}</strong>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

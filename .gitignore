@@ -1,0 +1,67 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment / local config
+.env
+.env.*
+!.env.example
+*.local
+
+# Test / coverage caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Packaging / build outputs
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Jupyter / notebooks
+.ipynb_checkpoints/
+.notebook/
+
+# Logs and runtime files
+logs/
+*.log
+*.pid
+
+# Generated ML outputs
+artifacts/*
+!artifacts/best_model.pkl
+!artifacts/feature_columns.json
+!artifacts/evaluation.json
+models/
+reports/*
+!reports/app_metrics.json
+data/processed/
+data/interim/
+data/external/
+
+# Keep source/raw dataset files unless they are intentionally removed from git.
+!data/raw/
+!data/raw/.gitkeep
+
+# Editor / IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
